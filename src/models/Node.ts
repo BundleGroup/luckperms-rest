@@ -1,11 +1,7 @@
-import { ContextSet } from "./ContextSet";
+import { NewNode } from "./NewNode";
 
 export type NodeType = "permission" | "regex_permission" | "inheritance" | "prefix" | "suffix" | "meta" | "weight" | "display_name";
 
-export interface Node {
-    key: string,
-    type: NodeType,
-    value: boolean,
-    context: ContextSet,
-    expiry: Number
+export interface Node extends NewNode {
+    type: NodeType
 }

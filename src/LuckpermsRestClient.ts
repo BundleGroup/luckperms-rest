@@ -68,7 +68,7 @@ export class LuckpermsRestClient {
         return await this.request("patch", path, body);
     }
 
-    async delete(path: string, body: object): Promise<APIResponse> {
+    async delete(path: string, body?: object): Promise<APIResponse> {
         return await this.request("delete", path, body);
     }
 }
