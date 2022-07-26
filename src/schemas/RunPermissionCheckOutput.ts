@@ -1,6 +1,6 @@
 import { Node } from "../models/Node";
 
-export interface RunUserPermissionCheckOutput {
+export interface RunPermissionCheckOutput {
     result: "true" | "false" | "undefined",
     node: Node
 }

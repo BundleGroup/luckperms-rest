@@ -1,6 +1,6 @@
 import { QueryOptions } from "../models/QueryOptions";
 
-export interface RunCustomUserPermissionCheckInput {
+export interface RunCustomPermissionCheckInput {
     permission: string,
     queryOptions?: QueryOptions
 }

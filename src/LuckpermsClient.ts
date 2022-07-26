@@ -1,4 +1,5 @@
 import { LuckpermsRestClient } from "./LuckpermsRestClient";
+import { Action } from "./models/Action";
 import { Metadata } from "./models/Metadata";
 import { NewNode } from "./models/NewNode";
 import { Node } from "./models/Node";
@@ -6,9 +7,10 @@ import { NodeMap } from "./models/NodeMap";
 import { User } from "./models/User";
 import { UUID } from "./models/UUID";
 import { CreateUserInput } from "./schemas/CreateUserInput";
-import { RunCustomUserPermissionCheckInput } from "./schemas/RunCustomUserPermissionCheckInput";
-import { RunUserPermissionCheckOutput } from "./schemas/RunUserPermissionCheckOutput";
-import { SearchUsersInput } from "./schemas/SearchUsersInput";
+import { RunCustomPermissionCheckInput } from "./schemas/RunCustomPermissionCheckInput";
+import { RunPermissionCheckOutput } from "./schemas/RunPermissionCheckOutput";
+import { SearchGroupsOutput } from "./schemas/SearchGroupsOutput";
+import { SearchUsersGroupsInput } from "./schemas/SearchUsersGroupsInput";
 import { SearchUsersOutput } from "./schemas/SearchUsersOutput";
 import { TrackPromoteDemoteInput } from "./schemas/TrackPromoteDemoteInput";
 import { TrackPromoteDemoteOutput } from "./schemas/TrackPromoteDemoteOutput";
@@ -23,7 +25,7 @@ export class LuckpermsClient extends LuckpermsRestClient {
         return await this.post("/user", details);
     }
 
-    async searchUsers(query: SearchUsersInput): Promise<SearchUsersOutput> {
+    async searchUsers(query: SearchUsersGroupsInput): Promise<SearchUsersOutput> {
         // TODO: Clean this up - typescript isn't happy with directly passing query
         return await this.get("/user/search", {
             key: query.key,
@@ -69,13 +71,13 @@ export class LuckpermsClient extends LuckpermsRestClient {
         return await this.get(`/user/${uuid}/metadata`);
     }
 
-    async runUserPermissionCheck(uuid: UUID, permission: string): Promise<RunUserPermissionCheckOutput> {
+    async runUserPermissionCheck(uuid: UUID, permission: string): Promise<RunPermissionCheckOutput> {
         return await this.get(`/user/${uuid}/permissionCheck`, {
             permission
         });
     }
 
-    async runCustomUserPermissionCheck(uuid: UUID, options: RunCustomUserPermissionCheckInput): Promise<RunUserPermissionCheckOutput> {
+    async runCustomUserPermissionCheck(uuid: UUID, options: RunCustomPermissionCheckInput): Promise<RunPermissionCheckOutput> {
         return await this.post(`/user/${uuid}/permissionCheck`, options);
     }
 
@@ -85,5 +87,67 @@ export class LuckpermsClient extends LuckpermsRestClient {
 
     async demoteUser(uuid: UUID, trackRequest: TrackPromoteDemoteInput): Promise<TrackPromoteDemoteOutput> {
         return await this.post(`/user/${uuid}/demote`, trackRequest);
+    }
+
+    async getGroups(): Promise<string> {
+        return await this.get("/group");
+    }
+
+    async createGroup(name: string): Promise<string> {
+        return await this.post("/group", {
+            name
+        });
+    }
+
+    async searchGroups(query: SearchUsersGroupsInput): Promise<SearchGroupsOutput> {
+        // TODO: Clean this up - typescript isn't happy with directly passing query
+        return await this.get("/group/search", {
+            key: query.key,
+            keyStartsWith: query.keyStartsWith,
+            metaKey: query.metaKey,
+            type: query.type
+        });
+    }
+
+    async deleteGroup(group: string): Promise<void> {
+        return await this.delete(`/group/${group}`);
+    }
+
+    async getGroupNodes(group: string): Promise<NodeMap> {
+        return await this.get(`/group/${group}/nodes`);
+    }
+
+    async addGroupNode(group: string, node: NewNode): Promise<NodeMap> {
+        return await this.post(`/group/${group}/nodes`, node);
+    }
+
+    async addGroupNodes(group: string, nodes: NewNode[]): Promise<NodeMap> {
+        return await this.patch(`/group/${group}/nodes`, nodes);
+    }
+
+    async replaceGroupNodes(group: string, nodes: NewNode[]): Promise<NodeMap> {
+        return await this.put(`/group/${group}/nodes`, nodes);
+    }
+
+    async deleteGroupNodes(group: string, nodes: NewNode[]): Promise<void> {
+        return await this.delete(`/group/${group}/nodes`, nodes);
+    }
+
+    async getGroupMetadata(group: string): Promise<Metadata> {
+        return await this.get(`/group/${group}/metadata`);
+    }
+
+    async runGroupPermissionCheck(group: string, permission: string): Promise<RunPermissionCheckOutput> {
+        return await this.get(`/user/${group}/permissionCheck`, {
+            permission
+        });
+    }
+
+    async runCustomGroupPermissionCheck(group: string, options: RunCustomPermissionCheckInput): Promise<RunPermissionCheckOutput> {
+        return await this.post(`/group/${group}/permissionCheck`, options);
+    }
+
+    async submitAction(action: Action): Promise<void> {
+        return await this.post(`/action`, action);
     }
 }

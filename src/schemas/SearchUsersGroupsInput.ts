@@ -1,6 +1,6 @@
 import { NodeType } from "../models/Node";
 
-export interface SearchUsersInput {
+export interface SearchUsersGroupsInput {
     key?: string,
     keyStartsWith?: string,
     metaKey?: string,
