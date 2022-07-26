@@ -1,0 +1,12 @@
+{
+  "name": "luckperms-rest",
+  "version": "1.0.0",
+  "description": "API Client for LuckPerms Rest API",
+  "main": "src/index.js",
+  "repository": "git@gitlab.com:codingJWilliams/luckperms-rest.js.git",
+  "author": "Jay Williams <course@jaywilliams.me>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
