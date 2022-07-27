@@ -1,5 +1,5 @@
 npm_publish() {
-    npm publish 2>&1; echo "$?" >> /tmp/npm_status.txt; }; 
+    npm publish 2>&1; echo "$?" >> /tmp/npm_status.txt; 
     return 0
 }
 
