@@ -32,6 +32,7 @@ publish:
     - tags
 
 pages:
+  stage: publish
   script:
     - npm install -g npm@latest
     - mv dist/docs public
