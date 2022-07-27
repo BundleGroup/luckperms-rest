@@ -1,6 +1,6 @@
 {
   "name": "luckperms-rest",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "API Client for LuckPerms Rest API",
   "main": "dist/index.js",
   "repository": "git@gitlab.com:codingJWilliams/luckperms-rest.git",
