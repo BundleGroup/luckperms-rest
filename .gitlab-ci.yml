@@ -30,7 +30,6 @@ publish:
     - bash ci/publish.sh
   only:
     - main
-  allow_failure: true
 
 pages:
   stage: deploy
