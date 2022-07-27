@@ -1,9 +1,9 @@
 {
   "name": "luckperms-rest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "API Client for LuckPerms Rest API",
-  "main": "src/index.js",
-  "repository": "git@gitlab.com:codingJWilliams/luckperms-rest.js.git",
+  "main": "dist/index.js",
+  "repository": "git@gitlab.com:codingJWilliams/luckperms-rest.git",
   "author": "Jay Williams <course@jaywilliams.me>",
   "license": "MIT",
   "dependencies": {
