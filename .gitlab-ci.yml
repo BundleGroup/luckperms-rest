@@ -27,8 +27,7 @@ publish:
     - npm install -g npm@latest
     - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
     - npm version --no-git-tag-version $CI_COMMIT_TAG --allow-same-version
-    - npm_publish() { npm publish 2>&1; echo "$?" >> /tmp/npm_status.txt; }; npm_publish | tee /tmp/npm.txt
-    - if [[ ! "$(cat /tmp/npm_status.txt)" -eq "0" ]] && [[ -z "$(cat /tmp/npm.txt | grep "You cannot publish over the previously published versions:")" ]]; then exit 1; fi;
+    - bash ci/publish.sh
   only:
     - main
   allow_failure: true
