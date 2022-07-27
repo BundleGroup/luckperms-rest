@@ -1,4 +1,4 @@
-# luckperms-rest
+# Luckperms Rest Client
 
 Node.JS client for the Luckperms [rest-api](https://github.com/luckperms/rest-api) project.
 
@@ -38,3 +38,7 @@ async function main() {
 }
 main();
 ```
+
+## Documentation
+
+See the [API Documentation](https://codingjwilliams.gitlab.io/luckperms-rest/).
