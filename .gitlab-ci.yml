@@ -30,3 +30,14 @@ publish:
     - npm publish
   only:
     - tags
+
+pages:
+  stage: publish
+  script:
+    - npm install -g npm@latest
+    - mv dist/docs public
+  artifacts:
+    paths:
+      - public
+  only:
+    - tags

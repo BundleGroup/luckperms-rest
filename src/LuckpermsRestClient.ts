@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from "axios";
 import { APIKeyError } from "./errors/APIKeyError";
 import { APIRequestError } from "./errors/APIRequestError";
 
-interface LuckpermsClientOptions {
+export interface LuckpermsClientOptions {
     url: string,
     apiKey?: string
 };
