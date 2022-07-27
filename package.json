@@ -1,11 +1,14 @@
 {
   "name": "luckperms-rest",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "API Client for LuckPerms Rest API",
   "main": "dist/index.js",
   "repository": "git@gitlab.com:codingJWilliams/luckperms-rest.git",
   "author": "Jay Williams <course@jaywilliams.me>",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "dependencies": {
     "axios": "^0.27.2"
   },
