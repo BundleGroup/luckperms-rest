@@ -1,6 +1,7 @@
 image: node:16
 
-variables: {}
+variables:
+  NPM_TOKEN: $NPM_TOKEN
 
 stages:
   - build
@@ -24,7 +25,6 @@ publish:
   stage: publish
   script:
     - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-    - cat ~/.npmrc
     - npm version --no-git-tag-version $CI_COMMIT_TAG --allow-same-version
     - npm publish
   only:
