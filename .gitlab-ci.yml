@@ -19,7 +19,6 @@ build:
   script:
     - yarn
     - yarn build
-    - tsc
 
 publish:
   stage: publish
