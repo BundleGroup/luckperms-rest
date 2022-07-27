@@ -6,7 +6,6 @@ variables:
 stages:
   - build
   - publish
-  - pages
 
 build:
   stage: build
