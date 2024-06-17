@@ -3,9 +3,9 @@ import { APIKeyError } from "./errors/APIKeyError";
 import { APIRequestError } from "./errors/APIRequestError";
 
 export interface LuckpermsClientOptions {
-    url: string,
-    apiKey?: string
-};
+    url: string;
+    apiKey?: string;
+}
 
 type APIResponse = any;
 
@@ -19,31 +19,39 @@ export class LuckpermsRestClient {
         this.options = options;
         this.restClient = axios.create({
             baseURL: this.options.url,
-            headers: this.options.apiKey ? {
-                Authorization: `Bearer ${this.options.apiKey}`
-            } : {},
+            headers: this.options.apiKey
+                ? {
+                      Authorization: `Bearer ${this.options.apiKey}`,
+                  }
+                : {},
         });
     }
 
-    async request(method: RequestMethod, path: string, body?: any, query?: object): Promise<APIResponse> {
+    async request(
+        method: RequestMethod,
+        path: string,
+        body?: any,
+        query?: object
+    ): Promise<APIResponse> {
         try {
-            let headers = body ? {
-                'Content-Type': 'application/json'
-            } : {};
-
             let response = await this.restClient.request({
                 method,
-                headers,
+                headers: body
+                    ? {
+                          "Content-Type": "application/json",
+                      }
+                    : undefined,
                 url: path,
                 data: JSON.stringify(body),
-                params: query
+                params: query,
             });
 
             return response.data;
-        } catch (error) {
+        } catch (error: any) {
             if (error.response) {
-                if (error.response.status === 401) throw new APIKeyError(error.response.data);
-                else throw new APIRequestError(error.response.statusText)
+                if (error.response.status === 401)
+                    throw new APIKeyError(error.response.data);
+                else throw new APIRequestError(error.response.statusText);
             } else if (error.request) {
                 throw new APIRequestError("No response received from the API");
             } else {

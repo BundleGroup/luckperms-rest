@@ -1,7 +1,0 @@
-{
-    "$schema": "https://typedoc.org/schema.json",
-    "out": "dist/docs",
-    "basePath": "src/",
-    "entryPoints": ["src/index.ts"],
-    "includeVersion": true
-}

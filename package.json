@@ -1,23 +1,27 @@
 {
-  "name": "luckperms-rest",
-  "version": "1.0.11",
-  "description": "API Client for LuckPerms Rest API",
-  "main": "dist/index.js",
-  "repository": "git@gitlab.com:codingJWilliams/luckperms-rest.git",
-  "author": "Jay Williams <course@jaywilliams.me>",
-  "license": "MIT",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
-  "dependencies": {
-    "axios": "^0.27.2"
-  },
-  "devDependencies": {
-    "typedoc": "^0.23.9",
-    "typedoc-plugin-missing-exports": "^0.23.0",
-    "typescript": "^4.7.4"
-  },
-  "scripts": {
-    "build": "tsc && typedoc"
-  }
+    "name": "luckperms-rest",
+    "type": "module",
+    "version": "1.0.11",
+    "description": "API Client for LuckPerms Rest API",
+    "main": "dist/index.js",
+    "repository": "git@git.bundlegroup.gg:coastercon/luckperms-rest.git",
+    "author": "Jay Williams <course@jaywilliams.me>",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.27.2"
+    },
+    "devDependencies": {
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/gitlab": "^13.1.0",
+        "@semantic-release/npm": "^12.0.1",
+        "semantic-release": "^24.0.0",
+        "typescript": "^4.7.4"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "tsc",
+        "semantic-release": "semantic-release"
+    }
 }
